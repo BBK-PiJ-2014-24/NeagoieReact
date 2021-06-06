@@ -20,10 +20,10 @@ class App extends React.Component {
     .then(users => this.setState({monsters: users}));
   }
 
-  filterMonsters(){
-
-
-  }
+  // must have => in order for e to be lexical scope
+  handleChange = (e) => {
+    this.setState({searchField: e.target.value});
+  };
   
 
 
@@ -40,7 +40,7 @@ class App extends React.Component {
       <div className="App">
         <SearchBox 
           placeholder="Search Monsters"
-          handleChange={(e)=> this.setState({searchField: e.target.value})}
+          handleChange={this.handleChange}
         />
         <CardList monsters={filteredMonsters} /> 
       </div>
